@@ -49,11 +49,6 @@ pipeline {
         }
       }
     }
-  }
-  post {
-    failure {
-      echo 'Build has failed'
-    }
   }  
  }
 }
