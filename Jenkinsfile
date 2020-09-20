@@ -36,7 +36,7 @@ pipeline {
                   "files": [
                     {
                       "pattern": "gameoflife-web/target/*.war",
-                      "target": "libs-release-local/"
+                      "target": "libs-release-local"
                     } 
                   ]
             }'''
