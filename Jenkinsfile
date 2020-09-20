@@ -30,17 +30,17 @@ pipeline {
     success {
           archiveArtifacts 'gameoflife-web/target/*.war'
           junit 'gameoflife-web/target/surefire-reports/*.xml'
-           (
+          rtUpload (
             serverId: 'Jfrog',
             spec: '''{
-              "files": [
-                {
-                  "pattern": "gameoflife-web/target/*.war",
-                  "target": "libs-release-local/"
-                }
-               ]rtUpload
-            }''',
+                  "files": [
+                    {
+                      "pattern": "gameoflife-web/target/*.war",
+                      "target": "libs-release-local/"
+                    } 
+                  ]
+            }'''
           )
     }
   }
-}  
+} 
