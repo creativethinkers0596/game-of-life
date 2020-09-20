@@ -25,17 +25,12 @@ pipeline {
         }
       } 
     }
+  }    
   post {
     success {
-      stage ('archeiving artifacts and publishing test result ') {
-        steps {
           archiveArtifacts 'gameoflife-web/target/*.war'
           junit 'gameoflife-web/target/surefire-reports/*.xml'
-        }
-      }
-      stage ('copying artifacts') {
-        steps {
-          rtUpload (
+           (
             serverId: 'Jfrog',
             spec: '''{
               "files": [
@@ -43,12 +38,9 @@ pipeline {
                   "pattern": "gameoflife-web/target/*.war",
                   "target": "libs-release-local/"
                 }
-               ]
+               ]rtUpload
             }''',
           )
-        }
-      }
     }
-  }  
   }
-}
+}  

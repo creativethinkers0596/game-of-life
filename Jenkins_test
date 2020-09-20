@@ -1,0 +1,30 @@
+pipeline {
+  agent any
+  stages {
+    stage ('cloning') {
+      steps {
+        git branch: 'master',
+            url: 'https://github.com/creativethinkers0596/game-of-life.git'
+      }
+    }
+    stage ('package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+    stage ('sonar analysis') {
+      steps {
+        withSonarQubeEnv('SONARQUBE') {
+          sh 'mvn sonar:sonar'
+        }
+      } 
+    }
+  post {
+      stage ('post build acyions') {
+          success {
+              echo 'build success'
+          }
+      }      
+  }
+  }  
+}
