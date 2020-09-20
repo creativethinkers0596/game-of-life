@@ -25,9 +25,8 @@ pipeline {
         }
       } 
     }
-  }    
-  post {
-    success {
+    stage ('archieving artifacts and uploading') {  
+      steps { 
           archiveArtifacts 'gameoflife-web/target/*.war'
           junit 'gameoflife-web/target/surefire-reports/*.xml'
           rtUpload (
@@ -41,6 +40,7 @@ pipeline {
                   ]
             }'''
           )
-    }
+      }    
+    }      
   }
 } 
